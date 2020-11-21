@@ -1,8 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import "../styles/App.css";
-import slides from "../data.js";
 
-const App = () => {
+const App = (props) => {
   const [index, setIndex] = useState(0);
   const [prevv, setPrevv] = useState(true);
   const [next, setNext] = useState(false);
@@ -17,13 +16,13 @@ const App = () => {
     }
   }
   function handleNext() {
-    if (index < slides.length - 1) {
+    if (index < props.slides.length - 1) {
       let i = index;
       setIndex(i + 1);
     }
   }
   useEffect(() => {
-    if (index === slides.length - 1) {
+    if (index === props.slides.length - 1) {
       setRestart(false);
       setPrevv(false);
       setNext(true);
@@ -39,8 +38,8 @@ const App = () => {
   }, [index]);
   return (
     <>
-      <h1 data-testid="title">{slides[index].title}</h1>
-      <p data-testid="text">{slides[index].text}</p>
+      <h1 data-testid="title">{props.slides[index].title}</h1>
+      <p data-testid="text">{props.slides[index].text}</p>
       <button
         data-testid="button-restart"
         onClick={handleRestart}
