@@ -23,11 +23,6 @@ const App = () => {
     }
   }
   useEffect(() => {
-    setRestart(true);
-    setPrevv(true);
-    setNext(false);
-  }, []);
-  useEffect(() => {
     if (index === slides.length - 1) {
       setRestart(false);
       setPrevv(false);
