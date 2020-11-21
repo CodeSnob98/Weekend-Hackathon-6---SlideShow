@@ -6,6 +6,7 @@ const App = () => {
   const [index, setIndex] = useState(0);
   const [prevv, setPrevv] = useState(false);
   const [next, setNext] = useState(false);
+  const [restart, setRestart] = useState(true);
   function handleRestart() {
     setIndex(0);
   }
@@ -23,12 +24,15 @@ const App = () => {
   }
   useEffect(() => {
     if (index === slides.length - 1) {
+      setRestart(false);
       setPrevv(false);
       setNext(true);
     } else if (index === 0) {
+      setRestart(true);
       setPrevv(true);
       setNext(false);
     } else {
+      setRestart(false);
       setPrevv(false);
       setNext(false);
     }
@@ -37,11 +41,15 @@ const App = () => {
     <>
       <h1 data-testid="title">{slides[index].title}</h1>
       <p data-testid="text">{slides[index].text}</p>
-      <button data-testid="button-restart" onClick={handleRestart}>
+      <button
+        data-testid="button-restart"
+        onClick={handleRestart}
+        disabled={restart}
+      >
         Restart
       </button>
       <button data-testid="button-prev" onClick={handlePrev} disabled={prevv}>
-        Previous
+        Prev
       </button>
       <button data-testid="button-next" onClick={handleNext} disabled={next}>
         Next
