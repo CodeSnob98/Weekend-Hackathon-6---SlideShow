@@ -4,7 +4,7 @@ import slides from "../data.js";
 
 const App = () => {
   const [index, setIndex] = useState(0);
-  const [prevv, setPrevv] = useState(false);
+  const [prevv, setPrevv] = useState(true);
   const [next, setNext] = useState(false);
   const [restart, setRestart] = useState(true);
   function handleRestart() {
@@ -22,6 +22,11 @@ const App = () => {
       setIndex(i + 1);
     }
   }
+  useEffect(() => {
+    setRestart(true);
+    setPrevv(true);
+    setNext(false);
+  }, []);
   useEffect(() => {
     if (index === slides.length - 1) {
       setRestart(false);
